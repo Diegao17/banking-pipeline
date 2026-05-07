@@ -6,17 +6,16 @@ def lambda_handler(event, context):
     if event.get("amount", 0) <= 0:
         raise Exception("Invalid amount")
 
-    # Validar country (2 letras)
+    # Country
     country = event.get("country", "")
     if len(country) != 2:
         raise Exception("Invalid country code")
 
-    # Validar account (formato simple)
+    # Account
     account = event.get("account", "")
     if "-" not in account:
         raise Exception("Invalid account format")
 
-    # Agregamos campo indicando que pasó validación
     event["validated"] = True
 
     return event
