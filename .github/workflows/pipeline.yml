@@ -1,9 +1,7 @@
-name: Deploy Terraform Pipeline
+name: Deploy Banking Pipeline
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
 
 jobs:
   terraform:
