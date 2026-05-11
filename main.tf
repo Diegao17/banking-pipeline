@@ -7,6 +7,11 @@ module "validate_lambda" {
   function_name = "validate_lambda"
   source_path   = "${path.module}/lambdas/validate"
   role_arn      = aws_iam_role.lambda_role.arn
+
+  depends_on = [
+    aws_iam_role_policy_attachment.lambda_basic,
+    aws_iam_role_policy_attachment.lambda_s3
+  ]
 }
 
 module "risk_lambda" {
@@ -14,6 +19,11 @@ module "risk_lambda" {
   function_name = "risk_lambda"
   source_path   = "${path.module}/lambdas/risk"
   role_arn      = aws_iam_role.lambda_role.arn
+
+  depends_on = [
+    aws_iam_role_policy_attachment.lambda_basic,
+    aws_iam_role_policy_attachment.lambda_s3
+  ]
 }
 
 module "route_lambda" {
@@ -21,6 +31,11 @@ module "route_lambda" {
   function_name = "route_lambda"
   source_path   = "${path.module}/lambdas/route"
   role_arn      = aws_iam_role.lambda_role.arn
+
+  depends_on = [
+    aws_iam_role_policy_attachment.lambda_basic,
+    aws_iam_role_policy_attachment.lambda_s3
+  ]
 }
 
 resource "aws_s3_bucket" "pipeline_bucket" {
